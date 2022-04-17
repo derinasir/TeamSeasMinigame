@@ -1,0 +1,80 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scripts/Trashes.gd" type="Script" id=1]
+[ext_resource path="res://prefabs/Trash/SodaCan.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sprites/ocean.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Ocean.gd" type="Script" id=4]
+[ext_resource path="res://swimmer/Swimmer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sounds/bubble_nogb_v.mp3" type="AudioStream" id=6]
+[ext_resource path="res://prefabs/Trash/PlasticBottle.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sounds/Plop.ogg" type="AudioStream" id=8]
+[ext_resource path="res://prefabs/Trash/BeerBottle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://prefabs/Trash/GlassBottle.tscn" type="PackedScene" id=10]
+[ext_resource path="res://prefabs/Trash/TinCan_A.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ui/UI.tscn" type="PackedScene" id=12]
+[ext_resource path="res://prefabs/Trash/SprayCan.tscn" type="PackedScene" id=13]
+[ext_resource path="res://prefabs/Trash/GlassVase.tscn" type="PackedScene" id=14]
+[ext_resource path="res://prefabs/Trash/TinCan_B.tscn" type="PackedScene" id=15]
+
+[node name="Ocean" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 400, 246 )
+texture = ExtResource( 3 )
+
+[node name="Border" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Border"]
+polygon = PoolVector2Array( 808, -8, -8, -8, -8, 496, 808, 496, 808, 0, 800, 0, 800, 492, 0, 492, 0, 0, 808, 0 )
+
+[node name="Swimmer" parent="." instance=ExtResource( 5 )]
+pause_mode = 1
+position = Vector2( 353, 160 )
+speed = 100
+
+[node name="Trashes" type="Node2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="BeerBottle" parent="Trashes" instance=ExtResource( 9 )]
+position = Vector2( 52, 450 )
+
+[node name="GlassBottle" parent="Trashes" instance=ExtResource( 10 )]
+position = Vector2( 747, 62 )
+
+[node name="GlassVase" parent="Trashes" instance=ExtResource( 14 )]
+position = Vector2( 248, 363 )
+
+[node name="PlasticBottle" parent="Trashes" instance=ExtResource( 7 )]
+position = Vector2( 67, 184 )
+
+[node name="SodaCan" parent="Trashes" instance=ExtResource( 2 )]
+position = Vector2( 276, 42 )
+
+[node name="SprayCan" parent="Trashes" instance=ExtResource( 13 )]
+position = Vector2( 507, 446 )
+
+[node name="TinCan_A" parent="Trashes" instance=ExtResource( 11 )]
+position = Vector2( 583, 259 )
+
+[node name="TinCan_B" parent="Trashes" instance=ExtResource( 15 )]
+position = Vector2( 771, 448 )
+
+[node name="Pop" type="AudioStreamPlayer" parent="Trashes"]
+pause_mode = 1
+stream = ExtResource( 8 )
+volume_db = -5.0
+
+[node name="Ambiance" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 6 )
+volume_db = -25.0
+
+[node name="UI" parent="." instance=ExtResource( 12 )]
+
+[connection signal="all_clear" from="Trashes" to="." method="_on_Trashes_all_clear"]
+[connection signal="all_clear" from="Trashes" to="UI" method="_on_Trashes_all_clear"]
+[connection signal="trash_picked" from="Trashes" to="." method="_on_Trashes_trash_picked"]
+[connection signal="trash_picked" from="Trashes" to="UI" method="_on_Trashes_trash_picked"]
+[connection signal="picked_up" from="Trashes/BeerBottle" to="Trashes" method="_on_BeerBottle_picked_up"]
+[connection signal="finished" from="Ambiance" to="." method="_on_AudioStreamPlayer_finished"]

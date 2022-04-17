@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bubble_nogb_v.mp3-c7a8da2d7c8bbefe5f4b50260b95ab01.mp3str"
+
+[deps]
+
+source_file="res://sounds/bubble_nogb_v.mp3"
+dest_files=[ "res://.import/bubble_nogb_v.mp3-c7a8da2d7c8bbefe5f4b50260b95ab01.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,145 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/UI.gd" type="Script" id=1]
+[ext_resource path="res://ui/Retro Gaming.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://ui/TS.png" type="Texture" id=3]
+[ext_resource path="res://scripts/ExitButton.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+outline_size = 2
+outline_color = Color( 0.054902, 0.211765, 0.545098, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFontData" id=2]
+antialiased = false
+font_path = "res://ui/Retro Gaming.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+outline_size = 2
+outline_color = Color( 0.054902, 0.211765, 0.545098, 1 )
+font_data = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 10
+outline_size = 1
+outline_color = Color( 0.054902, 0.211765, 0.545098, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+outline_size = 2
+outline_color = Color( 0.054902, 0.211765, 0.545098, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+outline_size = 2
+outline_color = Color( 0.054902, 0.211765, 0.545098, 1 )
+font_data = ExtResource( 2 )
+
+[node name="UI" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Count" type="Label" parent="."]
+visible = false
+margin_left = 5.0
+margin_right = 47.0
+margin_bottom = 23.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0/8"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Goal" type="Label" parent="Count"]
+margin_left = 547.0
+margin_right = 786.0
+margin_bottom = 23.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Collect all the trash"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Label" parent="."]
+visible = false
+margin_right = 800.0
+margin_bottom = 492.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Press enter key to start"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Win" type="TextureRect" parent="."]
+margin_left = 200.0
+margin_top = 123.0
+margin_right = 600.0
+margin_bottom = 369.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text1" type="Label" parent="Win"]
+margin_left = 32.0
+margin_top = 8.0
+margin_right = 368.0
+margin_bottom = 24.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Winning this game is easy, saving the ocean is not"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text2" type="Label" parent="Win"]
+margin_left = 32.0
+margin_top = 136.0
+margin_right = 368.0
+margin_bottom = 157.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Donate today, every bit helps"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text3" type="Label" parent="Win"]
+margin_left = 32.0
+margin_top = 229.0
+margin_right = 368.0
+margin_bottom = 245.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Thanks for playing"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Win"]
+margin_left = 164.0
+margin_top = 261.0
+margin_right = 232.0
+margin_bottom = 281.0
+custom_fonts/font = SubResource( 6 )
+text = "Exit"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Win/Button" to="Win/Button" method="_on_Button_pressed"]

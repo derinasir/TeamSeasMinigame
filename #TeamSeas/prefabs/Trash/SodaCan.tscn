@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/trash/soda_can.png" type="Texture" id=1]
+[ext_resource path="res://prefabs/Trash.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.5, 8.5 )
+
+[node name="SodaCan" instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( 0.5, -0.5 )
+shape = SubResource( 1 )
+
+[node name="TextureRect" parent="." index="1"]
+margin_top = -9.0
+margin_bottom = 41.0
+texture = ExtResource( 1 )
